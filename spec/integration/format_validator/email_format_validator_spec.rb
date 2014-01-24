@@ -42,7 +42,12 @@ describe 'DataMapper::Validations::Fixtures::BillOfLading' do
         'Job@Book of Job',
         'test@localhost',
         'J. P. \'s-Gravezande, a.k.a. The Hacker!@example.com',
-        "test@example.com\nsomething after the newline"].each do |email|
+        "test@example.com\nsomething after the newline",
+        'mal.@example.com',
+        'mal.formed.@example.com',
+        'mal.formed@example.',
+        'mal.formed@example.com.',
+        'mal.formed@example...com'].each do |email|
     describe "with email value of #{email} (non RFC2822 compliant)" do
       before :all do
         @model = DataMapper::Validations::Fixtures::BillOfLading.new(valid_attributes.merge(:email => email))
